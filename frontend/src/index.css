@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --font-primary: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  
+  /* CareEcho Brand Color Tokens */
+  --color-brand-primary: #1E3A8A;       /* Deep Navy */
+  --color-brand-primary-hover: #172554;
+  --color-brand-accent: #2563EB;        /* Vivid Royal Blue */
+  --color-brand-light: #EFF6FF;         /* Sky Tint */
+  --color-brand-border: #DBEAFE;
+  
+  --color-bg-base: #F8FAFC;            /* Clean Slate White */
+  --color-bg-card: #FFFFFF;
+  --color-bg-subtle: #F1F5F9;
+  
+  --color-text-main: #0F172A;          /* Slate 900 */
+  --color-text-muted: #475569;         /* Slate 600 */
+  --color-text-subtle: #64748B;        /* Slate 500 */
+  --color-text-light: #94A3B8;         /* Slate 400 */
+  
+  --color-teal-badge: #E6FFFA;
+  --color-teal-text: #0D9488;
+  --color-teal-dot: #059669;
+  
+  --color-warning-bg: #FEF3C7;
+  --color-warning-text: #B45309;
+  
+  --color-error-bg: #FEE2E2;
+  --color-error-text: #DC2626;
+  
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
+  
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-card: 0 10px 30px -5px rgba(15, 23, 42, 0.06), 0 4px 12px -4px rgba(15, 23, 42, 0.04);
+  --shadow-elevated: 0 20px 40px -10px rgba(15, 23, 42, 0.1), 0 8px 16px -6px rgba(15, 23, 42, 0.06);
+  --shadow-glow: 0 0 25px rgba(37, 99, 235, 0.15);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-primary);
+  background-color: var(--color-bg-base);
+  color: var(--color-text-main);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
+}
+
+/* Atmospheric subtle background gradient matching the screenshot */
+.careecho-background {
+  background: 
+    radial-gradient(1000px circle at 50% -100px, rgba(224, 242, 254, 0.6) 0%, transparent 60%),
+    radial-gradient(800px circle at 90% 400px, rgba(238, 242, 255, 0.4) 0%, transparent 50%),
+    radial-gradient(800px circle at 10% 600px, rgba(240, 253, 250, 0.4) 0%, transparent 50%),
+    #F8FAFC;
+}
+
+/* Focus styles */
+input:focus, select:focus, textarea:focus, button:focus-visible {
+  outline: none;
+  border-color: var(--color-brand-accent) !important;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15) !important;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: #F1F5F9;
+}
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(37, 99, 235, 0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Smooth Interactive Elements */
+button, input, select, textarea, a {
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-primary {
+  background-color: var(--color-brand-primary);
+  color: #FFFFFF;
+  font-weight: 600;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 13px 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(30, 58, 138, 0.2);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: var(--color-brand-primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(30, 58, 138, 0.28);
+}
+
+.btn-primary:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.btn-primary:disabled {
+  background-color: #94A3B8;
+  cursor: not-allowed;
+  opacity: 0.7;
+  box-shadow: none;
+}

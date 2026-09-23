@@ -12,7 +12,8 @@ import {
   HelpCircle,
   Sparkles,
   ScrollText,
-  Download
+  Download,
+  GraduationCap
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { api } from '../api.js';
@@ -36,12 +37,12 @@ export default function FeedbackView({
 
   const characterLimit = 800;
 
-  // Common topic chips from Screenshot 4
+  // Training common topics
   const commonTopics = [
-    'Wait time exceeded',
-    'Sanitation issues',
-    'Lab result clarity',
-    'Staff communication'
+    'Training duration too short',
+    'Facilitation pacing',
+    'Practical hands-on gaps',
+    'Training materials & logistics'
   ];
 
   useEffect(() => {
@@ -63,12 +64,12 @@ export default function FeedbackView({
       }
     } catch (err) {
       console.error('Failed to load expectation for feedback:', err);
-      // Fallback baseline expectation so the page is immediately interactable matching screenshot
+      // Fallback baseline training expectation
       setExpectationData({
-        sessionId: '#CK-9842',
-        expectationText: 'I expect timely consultation within 15 minutes of my scheduled slot, clean sanitized facilities, and clear explanations of my lab results from the attending physician.',
+        sessionId: '#TR-9842',
+        expectationText: 'I expect the training to improve my understanding of digital health tools, clear clinical protocols, and hands-on case management.',
         submittedAt: new Date().toISOString(),
-        facilityWard: 'Primary Care OPD'
+        facilityWard: 'Clinical Training Division'
       });
     } finally {
       setLoading(false);
@@ -80,7 +81,6 @@ export default function FeedbackView({
       setSelectedTags(selectedTags.filter(t => t !== topic));
     } else {
       setSelectedTags([...selectedTags, topic]);
-      // Append topic to text if empty or helpful
       if (!feedbackText.includes(topic)) {
         setFeedbackText(prev => prev ? `${prev} Issue observed: ${topic}.` : `Issue observed: ${topic}.`);
       }
@@ -142,10 +142,10 @@ export default function FeedbackView({
   };
 
   const baselineText = expectationData?.expectationText || 
-    'I expect timely consultation within 15 minutes of my scheduled slot, clean sanitized facilities, and clear explanations of my lab results from the attending physician.';
+    'I expect the training to improve my understanding of digital health tools, clear clinical protocols, and hands-on case management.';
 
-  const visitId = expectationData?.sessionId || '#CK-9842';
-  const wardName = expectationData?.facilityWard || 'Primary Care OPD';
+  const visitId = expectationData?.sessionId || '#TR-9842';
+  const wardName = expectationData?.facilityWard || 'Clinical Training Division';
 
   return (
     <div className="careecho-background" style={{
@@ -172,7 +172,7 @@ export default function FeedbackView({
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#0D9488', fontWeight: 700 }}>
           <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#0D9488', display: 'inline-block' }} />
-          <span>CIVIC QUALITY ASSESSMENT</span>
+          <span>TRAINING QUALITY ASSESSMENT</span>
         </div>
 
         <div style={{
@@ -188,7 +188,7 @@ export default function FeedbackView({
           border: '1px solid #E2E8F0'
         }}>
           <Shield size={14} color="#0284C7" />
-          <span>Verified Visit ID • {visitId}</span>
+          <span>Verified Training ID • {visitId}</span>
         </div>
       </div>
 
@@ -210,7 +210,7 @@ export default function FeedbackView({
           maxWidth: '640px',
           lineHeight: 1.5
         }}>
-          Institutional feedback reconciliation. Compare your initial baseline expectation against the care experience received today.
+          Institutional training feedback reconciliation. Compare your initial baseline expectation against the training received today.
         </p>
       </div>
 
@@ -225,7 +225,7 @@ export default function FeedbackView({
         border: '1px solid #E2E8F0',
         marginBottom: '24px'
       }}>
-        {/* Top Submitted Expectation Box with Blue Accent Border */}
+        {/* Top Submitted Expectation Box */}
         <div style={{
           backgroundColor: '#F0F7FF',
           borderRadius: '16px',
@@ -335,7 +335,7 @@ export default function FeedbackView({
             color: '#64748B',
             marginBottom: '16px'
           }}>
-            Select an assessment to calibrate institutional quality metrics.
+            Select an assessment to calibrate institutional training metrics.
           </p>
 
           {/* Two Large Radio Option Cards */}
@@ -444,7 +444,7 @@ export default function FeedbackView({
                   color: '#0F172A'
                 }}>
                   {expectationMet === false 
-                    ? 'What went wrong or could be improved?' 
+                    ? 'What went wrong or could be improved? *' 
                     : 'Additional Comments / Positive Remarks'}
                 </label>
                 {expectationMet === false ? (
@@ -488,7 +488,7 @@ export default function FeedbackView({
             }}>
               {expectationMet === false 
                 ? 'Please let us know what happened so we can address your concerns.' 
-                : 'Share any standout personnel or areas of care excellence (optional).'}
+                : 'Share any standout facilitation or areas of excellence (optional).'}
             </p>
 
             <textarea
@@ -517,7 +517,7 @@ export default function FeedbackView({
             />
           </div>
 
-          {/* Common Topics Chips (Screenshot 4) */}
+          {/* Common Topics Chips */}
           <div style={{
             display: 'flex',
             flexWrap: 'wrap',
@@ -581,7 +581,7 @@ export default function FeedbackView({
             </span>
           </div>
 
-          {/* Institutional Safeguard Notice from Screenshot 4 */}
+          {/* Institutional Safeguard Notice */}
           <div style={{
             backgroundColor: '#EFF6FF',
             borderRadius: '14px',
@@ -605,7 +605,7 @@ export default function FeedbackView({
         </form>
       </div>
 
-      {/* Network & PDF Actions Bar from Screenshot 4 */}
+      {/* Network & PDF Actions Bar */}
       <div style={{
         width: '100%',
         maxWidth: '780px',

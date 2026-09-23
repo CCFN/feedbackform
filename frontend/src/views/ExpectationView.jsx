@@ -8,7 +8,8 @@ import {
   Sparkles, 
   CheckCircle2, 
   AlertCircle,
-  FileText
+  FileText,
+  GraduationCap
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { api } from '../api.js';
@@ -20,7 +21,7 @@ export default function ExpectationView({
   onBackToPathway 
 }) {
   const [expectationText, setExpectationText] = useState('');
-  const [sessionId, setSessionId] = useState('#CK-89410');
+  const [sessionId, setSessionId] = useState('#TR-89410');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [submittedExpectation, setSubmittedExpectation] = useState(null);
@@ -28,11 +29,11 @@ export default function ExpectationView({
 
   const characterLimit = 500;
 
-  // Prompt tags from design
+  // Training prompt tags
   const promptTags = [
-    '+ Wait time <15m',
-    '+ Clear diagnostic steps',
-    '+ Transparent prescription costs'
+    '+ Practical case simulations',
+    '+ Clear facilitation & guidance',
+    '+ Digital tools & system workflows'
   ];
 
   useEffect(() => {
@@ -105,8 +106,8 @@ export default function ExpectationView({
     }
   };
 
-  const participantName = user ? `${user.firstName} ${user.lastName}` : 'Eleanor Vance';
-  const participantRef = user ? `#EV-${user.id ? user.id.slice(0, 3).toUpperCase() : '772'}` : '#EV-772';
+  const staffName = user ? `${user.firstName} ${user.lastName}` : 'Eleanor Vance';
+  const staffRef = user ? `#ST-${user.id ? user.id.slice(0, 3).toUpperCase() : '772'}` : '#ST-772';
   const facilityName = user?.facilityName || 'St. Jude Metropolitan Health';
 
   return (
@@ -117,7 +118,7 @@ export default function ExpectationView({
       flexDirection: 'column',
       alignItems: 'center'
     }}>
-      {/* CareEcho Protocol Sub-bar */}
+      {/* Protocol Sub-bar */}
       <div style={{
         width: '100%',
         maxWidth: '780px',
@@ -134,9 +135,9 @@ export default function ExpectationView({
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#1E293B', fontWeight: 600 }}>
           <Shield size={16} color="#0D9488" />
-          <span>CareEcho Intake Protocol</span>
+          <span>CareEcho Training Protocol</span>
           <span style={{ color: '#94A3B8' }}>/</span>
-          <span style={{ color: '#1E3A8A', fontWeight: 700 }}>Stage 01: Pre-Consultation</span>
+          <span style={{ color: '#1E3A8A', fontWeight: 700 }}>Stage 01: Pre-Training Expectations</span>
         </div>
 
         <div style={{
@@ -151,7 +152,7 @@ export default function ExpectationView({
           fontWeight: 700
         }}>
           <span style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: '#0284C7' }} />
-          <span>Session ID: {sessionId}</span>
+          <span>Training Session ID: {sessionId}</span>
         </div>
       </div>
 
@@ -173,7 +174,7 @@ export default function ExpectationView({
           maxWidth: '640px',
           lineHeight: 1.5
         }}>
-          Document your standards and desired outcomes prior to consultation. Your feedback audit trail begins here.
+          Document your learning objectives and expected competencies prior to training. Your feedback audit trail begins here.
         </p>
       </div>
 
@@ -188,7 +189,7 @@ export default function ExpectationView({
         border: '1px solid #E2E8F0',
         marginBottom: '20px'
       }}>
-        {/* Hospital & Participant Info Box */}
+        {/* Facility & Staff Info Box */}
         <div style={{
           backgroundColor: '#EFF6FF',
           borderRadius: '16px',
@@ -220,7 +221,7 @@ export default function ExpectationView({
                 {facilityName}
               </h3>
               <p style={{ fontSize: '13px', color: '#475569' }}>
-                Participant: <strong style={{ color: '#0F172A' }}>{participantName}</strong> (Ref: {participantRef})
+                Staff Member: <strong style={{ color: '#0F172A' }}>{staffName}</strong> (Ref: {staffRef})
               </p>
             </div>
           </div>
@@ -271,7 +272,7 @@ export default function ExpectationView({
                 fontWeight: 700,
                 color: '#0F172A'
               }}>
-                Write your expectation
+                Write your training expectation
               </label>
               <span style={{
                 fontSize: '12.5px',
@@ -289,7 +290,7 @@ export default function ExpectationView({
                 setExpectationText(e.target.value);
                 if (errorMessage) setErrorMessage('');
               }}
-              placeholder="Describe what you expect from your visit, treatment, or facility service today..."
+              placeholder="Describe what you expect from this training program, workshop, or clinical capacity building session..."
               maxLength={characterLimit}
               style={{
                 width: '100%',
@@ -306,7 +307,7 @@ export default function ExpectationView({
             />
           </div>
 
-          {/* Prompt Tags from Screenshot 3 */}
+          {/* Prompt Tags */}
           <div style={{
             display: 'flex',
             flexWrap: 'wrap',
@@ -370,7 +371,7 @@ export default function ExpectationView({
             </button>
           </div>
 
-          {/* Security & Lock Disclaimer from Screenshot 3 */}
+          {/* Security & Lock Disclaimer */}
           <div style={{
             display: 'flex',
             alignItems: 'center',
@@ -385,13 +386,13 @@ export default function ExpectationView({
           }}>
             <Lock size={15} color="#0D9488" style={{ flexShrink: 0 }} />
             <span>
-              Once submitted, your expectation will be locked and stored, and your post-visit <strong style={{ color: '#0F172A' }}>Feedback form</strong> will be unlocked on your dashboard.
+              Once submitted, your expectation will be locked and stored, and your post-training <strong style={{ color: '#0F172A' }}>Feedback form</strong> will be unlocked on your dashboard.
             </span>
           </div>
         </form>
       </div>
 
-      {/* Guidelines Bottom Notice from Screenshot 3 */}
+      {/* Guidelines Bottom Notice */}
       <div style={{
         width: '100%',
         maxWidth: '780px',
@@ -406,7 +407,7 @@ export default function ExpectationView({
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#1E40AF', fontWeight: 600 }}>
           <Shield size={16} color="#2563EB" />
-          <span>Protected under Patient Charter • Standard Operating Record v4.2</span>
+          <span>Protected under Staff Development Charter • Standard Operating Record v4.2</span>
         </div>
 
         <button
